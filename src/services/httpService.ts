@@ -57,7 +57,8 @@ http.interceptors.response.use(
       localStorage.clear()
       sessionStorage.clear()
       abp.auth.clearToken()
-      window.location.href = '/account/login'
+      // window.location.href = '/account/login'
+      window.location.href = '/account/landingpage'
     }
     const { error } = res?.response?.data || {}
     if (!error) {

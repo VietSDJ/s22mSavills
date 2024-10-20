@@ -1,11 +1,10 @@
-
 .container {
   padding: 0;
   margin: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, @primary-color 0%, @primary-color 100%) !important;
+  // background: linear-gradient(180deg, @primary-color 0%, @primary-color 100%) !important;
   position: relative;
 
   .page-login {
@@ -42,16 +41,18 @@
     }
 
     .col-right {
-      
+
       display: flex;
       justify-content: center;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: left;
       background-image: url('../../assets/bg/background-login.jpeg');
+
       @media only screen and (max-width: 600px) {
         display: none !important;
       }
+
       .footer-copy-right {
         position: absolute;
         bottom: 20px;
@@ -67,6 +68,7 @@
       box-shadow: 0 0 4px rgba(29, 68, 73, 0.24);
     }
   }
+
   .page-forgot-password {
     height: 100vh;
     width: 100vw;
@@ -77,6 +79,7 @@
 
     .col-left {
       height: 100%;
+
       .ant-card {
         height: 100%;
 
@@ -133,6 +136,7 @@
   top: 40px;
   left: 80px;
   z-index: 1;
+
   :global(.ant-dropdown-trigger) {
     margin-right: 24px;
   }

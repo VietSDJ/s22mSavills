@@ -42,18 +42,18 @@ export const publicLayout: any = {
     component: LoadableComponent(
       () => import('../../../scenes/public/term-condition')
     )
-  },
-  landingPage: {
-    path: '/public/terms-and-conditions',
-    title: 'LANDING_PAGE',
-    layout: layouts.userLayout,
-    component: LoadableComponent(
-      () => import('../../../scenes/accounts/Login/landing-page/LandingPageView')
-    )
-  },
+  }
 }
 
 export const userLayout: any = {
+  landingPage: {
+    path: '/landingpage',
+    title: 'LANDING_PAGE',
+    layout: layouts.userLayout,
+    component: LoadableComponent(
+      () => import('../../../scenes/accounts/Login/landing-page')
+    )
+  },
   accountLogin: {
     path: '/login',
     title: 'LogIn',

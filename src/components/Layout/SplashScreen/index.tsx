@@ -29,7 +29,7 @@ const LoadingSplashScreen: React.FC<LoadingSplashScreenProps> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       redirectAfter > 0 && setRedirectAfter(redirectAfter - 1)
-    }, 1000)
+    }, 10)
     // Clear timeout if the component is unmounted
     return () => clearTimeout(timer)
   })
@@ -630,7 +630,7 @@ function withSplashScreen(WrappedComponent) {
         // Wait splash screen until delay time
         setTimeout(async () => {
           this.setState({ loading: false })
-        }, 4000)
+        }, 100)
         //  AppConfiguration.appLayoutConfig?.loader?.delayTime || 0)
       } catch (error) {
         this.setState({ loading: false, error })

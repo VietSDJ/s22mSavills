@@ -16,6 +16,7 @@ import PhoneLoginPanel from '@scenes/accounts/Login/PhoneLoginPanel'
 import SocialLogin from './SocialLogin/SocialLogin'
 import { MailOutlined, PhoneOutlined } from '@ant-design/icons'
 import { useLocation } from 'react-router-dom'
+import term from './Terms'
 
 declare var abp: any
 
@@ -31,8 +32,19 @@ export interface ILoginProps {
 @inject(Stores.AuthenticationStore, Stores.SessionStore, Stores.AccountStore)
 @observer
 class Login extends React.Component<ILoginProps> {
+  article: any = React.createRef()
+  constructor(props: ILoginProps) {
+    super(props)
+
+    this.handleAgreeTerms = this.handleAgreeTerms.bind(this)
+    this.handleEnterTerms = this.handleEnterTerms.bind(this)
+  }
+
   state = {
+    terms: false,
     step: loginSteps.login,
+    termAgreementClickable: false,
+
     method: loginMethods.systemAccount,
     loginMethodsAllow: {
       allowSelfRegistration: false,
@@ -44,8 +56,16 @@ class Login extends React.Component<ILoginProps> {
       useCaptchaOnRegistration: false
     }
   }
-
   async componentDidMount() {
+    this.article.current.addEventListener('scroll', (e) => {
+      const article = this.article.current
+      const isAtBottom =
+        Math.ceil(article.scrollTop + article.clientHeight) >=
+        article.scrollHeight
+
+      this.setState({ termAgreementClickable: isAtBottom })
+    })
+
     console.log(this.props.location)
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
@@ -66,12 +86,18 @@ class Login extends React.Component<ILoginProps> {
         state && state.from.pathname !== '/' ? state.from.pathname : '/'
     }
   }
-
+  handleAgreeTerms(e) {
+    e.preventDefault()
+    this.setState({ terms: true })
+  }
+  handleEnterTerms() {}
   public render() {
     const { method, loginMethodsAllow } = this.state
     const currentYear = new Date().getFullYear()
 
-    return (
+    return !this.state.terms ? (
+      term.call(this)
+    ) : (
       <Row className="page-login">
         <Col xs={0} md={16} className="h-100 col-right">
           <span className="footer-copy-right">

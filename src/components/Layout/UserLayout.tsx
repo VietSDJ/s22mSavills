@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import { Route, Routes } from 'react-router-dom'
 // import DocumentTitle from 'react-document-title'
-import LanguageSelect from './Header/LanguageSelect'
+// import LanguageSelect from './Header/LanguageSelect'
 import { userLayout } from './Router/router.config'
 import utils from '../../utils/utils'
 
@@ -15,9 +15,9 @@ class UserLayout extends React.Component<any> {
   render() {
     return (
       <div className="container">
-        <div className={'lang'} style={{ paddingRight: '15px' }}>
+        {/* <div className={'lang'} style={{ paddingRight: '15px' }}>
           <LanguageSelect wrapClass="auth-language" type="horizontal" />
-        </div>
+        </div> */}
         <Routes>
           {Object.keys(userLayout).map((key: any, index: number) => {
             const route = userLayout[key]
