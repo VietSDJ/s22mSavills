@@ -109,7 +109,7 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
 
   render() {
     const {
-      reportStore: { isLoading, editReport }
+      reportStore: { isLoading }
     } = this.props
     const { embedData } = this.state
     console.log(embedData)
@@ -125,8 +125,8 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
           size="large">
           <Row gutter={[8, 8]}>
             <Col sm={{ span: 24, offset: 0 }}>
-              <BarChartOutlined />{' '}
-              {editReport?.id ? L('EDIT_REPORT') : L('NEW_REPORT')}
+              <BarChartOutlined />
+              {L('VIEW_PBI')}
             </Col>
 
             {embedData?.TokenId && (

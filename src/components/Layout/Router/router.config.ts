@@ -270,8 +270,9 @@ export const portalLayouts: any = {
   // report user
   reportUser: {
     path: '/reportsUser',
-    name: 'REPORTS',
-    // permission: appPermissions.report.page,
+    name: 'REPORTS_USER',
+    permission: appPermissions.report.page,
+    // quyền report user riêng
     title: 'Reports',
     layout: layouts.portalLayout,
     component: LoadableComponent(() => import('../../../scenes/reportForUser'))
@@ -366,7 +367,7 @@ export const portalLayouts: any = {
   },
   adminRole: {
     path: '/roles',
-    // permission: appPermissions.adminRole.page,
+    permission: appPermissions.adminRole.page,
     title: 'Roles',
     name: 'ADMINISTRATION_ROLE',
     layout: layouts.portalLayout,
