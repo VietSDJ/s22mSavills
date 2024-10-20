@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { CButton, CLink, CRow, CCol, CImg } from "@coreui/react";
-import "./LandingPageView.scss";
+import "./LandingPageView.less";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import {
   FAQ,
@@ -9,17 +9,20 @@ import {
   VIDEO_WIDTH_HEIGHT,
   VIDEO_HEIGHT_WIDTH,
   VIDEO_BACKGROUND,
-} from "../../../constant";
+} from "../../../../constant";
 import {
   LAZY_IMG_4_3,
   LAZY_IMG_16_10,
   LAZY_IMG_16_9,
   S22M_LOGO,
+} from "@assets/images/banner/index";
+
+import {
   DOT_1,
   DOT_2,
   DOT_3,
-} from "../../../assets/images";
-import { getCurrentDevice } from "../../../_utils";
+} from "@assets/images/graphics";
+import utils from "../../../../utils/utils";
 
 const LAZY_IMGS = {
   tablet: LAZY_IMG_4_3,
@@ -29,6 +32,7 @@ const LAZY_IMGS = {
 };
 
 export default function () {
+  
   const [lazyImg, setLazyImg] = useState(null);
   const [videoSrc, setVideoSrc] = useState(null);
   const [videoStyle, setVideoStyle] = useState(VIDEO_HEIGHT_WIDTH);
@@ -47,7 +51,7 @@ export default function () {
 
   const getDevice = () => {
     const { availWidth, availHeight } = window.screen;
-    return getCurrentDevice(availWidth, availHeight);
+    return utils.getCurrentDevice(availWidth, availHeight);
   };
 
   const updateBackgroundPoster = () => {
@@ -68,7 +72,7 @@ export default function () {
   const updateBackgroundSrc = async () => {
     const device = getDevice();
     const dimensions = VIDEO_BACKGROUND[device];
-    import(`../../../assets/images/banner/bg-${dimensions}.mp4`).then(
+    import(`@assets/images/banner/bg-${dimensions}.mp4`).then(
       (videoSrc) => setVideoSrc(videoSrc.default)
     );
   };
@@ -144,8 +148,8 @@ export default function () {
               muted
               loop
               playsInline
-              poster={lazyImg}
-              src={videoSrc}
+              poster={lazyImg ?? ""}
+              src={videoSrc ?? ""}
               preload="none"
               onLoadedData={setAssetLoaded.bind(null, "bg")}
             ></video>

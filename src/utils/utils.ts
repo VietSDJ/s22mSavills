@@ -3,6 +3,7 @@ import * as abpTypings from '../lib/abp'
 import { L } from '../lib/abpUtility'
 import { routers } from '../components/Layout/Router/router.config'
 import { Language } from '../services/administrator/language/dto/language'
+import { ASPECT_RATIO_16_10, ASPECT_RATIO_16_9, ASPECT_RATIO_4_3, DESKTOP_DEVICES } from 'src/constant'
 
 declare var abp: any
 
@@ -114,6 +115,21 @@ class Utils {
     return abp.localization.languages.filter((val: any) => {
       return !val.isDisabled
     })
+  }
+
+  getCurrentDevice(width: any, height: any) {
+    if (width <= 480) return "tablet";
+    else if (width <= 1024) return "tablet";
+    else {
+      const aspectRatio = width / height;
+      return DESKTOP_DEVICES[this.detectAspectRatio(aspectRatio)];
+    }
+  }
+
+  detectAspectRatio(aspectRatio) {
+    if (aspectRatio <= ASPECT_RATIO_4_3) return ASPECT_RATIO_4_3;
+    else if (aspectRatio <= ASPECT_RATIO_16_10) return ASPECT_RATIO_16_10;
+    else return ASPECT_RATIO_16_9;
   }
 }
 

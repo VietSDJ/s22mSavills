@@ -1,11 +1,12 @@
 import React from "react";
 
-import LandingPageSection from "./LandingPageView";
+// import LandingPageSection from "./LandingPageView";
 
 const LandingPage = () => {
   return (
     <>
-      <LandingPageSection />
+    <h2>Hello</h2>
+      {/* <LandingPageSection /> */}
     </>
   );
 };
