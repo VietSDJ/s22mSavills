@@ -1,0 +1,206 @@
+.lp-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .lp-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 20px;
+    padding-right: 12px;
+    z-index: 2;
+
+    .lp-logo {
+      width: 75px;
+      height: 50px;
+      transition: opacity 0.3s linear;
+    }
+
+    .lp-link + .lp-link {
+      margin-left: 4px;
+    }
+  }
+
+  .lp-background {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 0;
+    opacity: 0.7;
+
+    .lp-background--wh {
+      height: 100%;
+      width: 177.7777778vh;
+      min-width: 100%;
+      min-height: 56.25vw;
+      max-width: unset;
+    }
+
+    .lp-background--hw {
+      width: 100vw;
+      height: auto;
+      min-width: 100%;
+      min-height: auto;
+      max-width: unset;
+    }
+  }
+
+  .lp-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vw;
+    z-index: 4;
+    transform: translate(-50%, -30%);
+    text-align: center;
+    color: #333;
+
+    .lp-graphic {
+      height: 20vh;
+      opacity: 0;
+    }
+
+    .lp-graphic + .lp-graphic {
+      padding-left: 10px;
+    }
+  }
+}
+
+.lp-btn {
+  font-weight: 700 !important;
+  color: #171930;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  font-size: 12.25px;
+  line-height: 1.5;
+  border-radius: 3.2px;
+  border: none;
+
+  &:hover {
+    background-color: #fce94e;
+    color: #171930;
+  }
+}
+
+.lp-btn-primary {
+  background-color: #fce94e;
+  padding: 4px 24px;
+  opacity: 0;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+@keyframes slide-top {
+  from {
+    transform: translateY(20vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .lp-container {
+    .lp-header {
+      padding: 40px;
+      padding-right: 28px;
+
+      .lp-logo {
+        width: 140px;
+        height: 90px;
+      }
+    }
+
+    .lp-content {
+      transition: opacity 0.3s linear;
+
+      .lp-title {
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .lp-slogan {
+        font-size: 19px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .lp-btn {
+    padding: 6px 12px;
+    font-size: 14.875px;
+    border-radius: 4px;
+  }
+
+  .lp-btn-primary {
+    padding: 6px 36px;
+  }
+
+  .lp-btn-primary-animation {
+    animation: slide-top 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    animation-delay: 0.3s;
+  }
+
+  .lp-graphic-right {
+    animation: slide-right 0.6s linear both;
+  }
+
+  .first {
+    animation-delay: 1.3s;
+  }
+
+  .second {
+    animation-delay: 2s;
+  }
+
+  .third {
+    animation: fade 0.5s linear both;
+    animation-delay: 2.7s;
+  }
+}
+
+@media (min-width: 1920px) {
+  .lp-container {
+    .lp-header {
+      padding-left: 24px;
+    }
+  }
+
+  .lp-btn {
+    padding: 8px 16px;
+    font-size: 17.5px;
+    border-radius: 4.8px;
+  }
+
+  .lp-btn-primary {
+    padding: 8px 48px;
+  }
+}

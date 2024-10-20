@@ -1,0 +1,14 @@
+{
+  "remoteServiceBaseUrl": "https://dev-savillsbi-api.sadec.co/",
+  "appBaseUrl": "https://dev-savillsbi.sadec.co/",
+  "appLayoutConfig": {
+    "loader": {
+      "enabled": false,
+      "type": "default",
+      "title": "",
+      "message": "",
+      "loadingType": "default",
+      "delayTime": 0
+    }
+  }
+}
