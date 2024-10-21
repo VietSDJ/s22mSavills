@@ -100,7 +100,7 @@ export default function () {
     <React.Fragment>
       <div className="lp-container">
         <div className="lp-header">
-          <CRow className="align-items-start">
+          <CRow className="align-items-start w-100 ">
             <CCol xs={3} md={2} lg={2}>
               <CImg
                 src={S22M_LOGO}
@@ -112,7 +112,7 @@ export default function () {
             <CCol xs={9} md={10} lg={10} className="text-right">
               <CLink href={S22M} target="_blank">
                 <CButton
-                  className="lp-btn mr-xs-1 mr-md-2 mr-lg-3"
+                  className="lp-btn mr-2"
                   color="secondary"
                   variant="ghost">
                   S22M
@@ -120,7 +120,7 @@ export default function () {
               </CLink>
               <CLink href={FAQ} target="_blank">
                 <CButton
-                  className="lp-btn mr-xs-1 mr-md-2 mr-lg-3"
+                  className="lp-btn mr-2"
                   color="secondary"
                   variant="ghost">
                   FAQ

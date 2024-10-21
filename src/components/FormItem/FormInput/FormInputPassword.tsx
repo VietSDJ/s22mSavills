@@ -1,17 +1,18 @@
-import React from "react";
-import { Form, Input, InputProps } from "antd";
-import { L } from "@lib/abpUtility";
-import AppConsts from "@lib/appconst";
+import React from 'react'
+import { Form, Input, InputProps } from 'antd'
+import AppConsts from '@lib/appconst'
 
-const { formVerticalLayout } = AppConsts;
+const { formVerticalLayout } = AppConsts
 interface FormInputProps {
-  label: string;
-  name: string | string[];
-  rule?;
-  disabled?: boolean;
-  className?: string;
-  inputProps?: InputProps;
-  size?: "middle" | "small" | "large";
+  label?: string
+  name: string | string[]
+  rule?
+  disabled?: boolean
+  className?: string
+  placeholder?: string
+  inputProps?: InputProps
+  prefix?: any
+  size?: 'middle' | 'small' | 'large'
 }
 
 const FormInputPassword: React.FC<FormInputProps> = ({
@@ -20,24 +21,23 @@ const FormInputPassword: React.FC<FormInputProps> = ({
   rule,
   disabled,
   className,
+  placeholder,
   inputProps,
-  size,
+  prefix,
+  size
 }) => {
   return (
-    <Form.Item
-      label={L(label)}
-      name={name}
-      rules={rule}
-      {...formVerticalLayout}
-    >
+    <Form.Item label={label} name={name} rules={rule} {...formVerticalLayout}>
       <Input.Password
         disabled={disabled}
+        prefix={prefix}
         className={className}
+        placeholder={placeholder}
         {...inputProps}
-        size={size ?? "large"}
+        size={size ?? 'large'}
       />
     </Form.Item>
-  );
-};
+  )
+}
 
-export default FormInputPassword;
+export default FormInputPassword

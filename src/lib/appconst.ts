@@ -590,7 +590,8 @@ export const loginSteps = {
 export const loginMethods = {
   systemAccount: 1,
   socialAccount: 2,
-  phoneNumber: 3
+  phoneNumber: 3,
+  forgetPassword: 3
 }
 
 export const workflowEvent = {
@@ -1001,7 +1002,8 @@ export let appPermissions = {
     read: 'PagesAdministration.Report.Read',
     update: 'PagesAdministration.Report.Update',
     delete: 'PagesAdministration.Report.Delete',
-    detail: 'PagesAdministration.Report.Detail'
+    detail: 'PagesAdministration.Report.Detail',
+    client: 'PagesAdministration.Report.Client'
   },
   // master data
   project: {

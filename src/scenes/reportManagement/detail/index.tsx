@@ -16,7 +16,6 @@ import rules from './validation'
 
 import { inject, observer } from 'mobx-react'
 import { withRouter } from '@components/Layout/Router/withRouter'
-import { BarChartOutlined } from '@ant-design/icons'
 import AppConsts, { appPermissions, dateFormat } from '@lib/appconst'
 import { AppComponentListBase } from '@components/AppComponentBase'
 import Stores from '@stores/storeIdentifier'
@@ -166,7 +165,7 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
 
   render() {
     const {
-      reportStore: { isLoading, editReport }
+      reportStore: { isLoading }
     } = this.props
     const { listUser, embedData } = this.state
     console.log(embedData)
@@ -182,10 +181,6 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
           className=" p-3"
           size="large">
           <Row gutter={[8, 8]}>
-            <Col sm={{ span: 24, offset: 0 }}>
-              <BarChartOutlined />{' '}
-              {editReport?.id ? L('EDIT_REPORT') : L('NEW_REPORT')}
-            </Col>
             <Col sm={{ span: 12, offset: 0 }}>
               <Form.Item
                 label={L('TITLE')}

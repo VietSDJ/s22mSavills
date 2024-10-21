@@ -5,7 +5,6 @@ import { Col, Form, Row, Switch, Modal, Button } from 'antd'
 
 import { inject, observer } from 'mobx-react'
 import { withRouter } from '@components/Layout/Router/withRouter'
-import { BarChartOutlined } from '@ant-design/icons'
 import { AppComponentListBase } from '@components/AppComponentBase'
 import Stores from '@stores/storeIdentifier'
 import { L, LNotification } from '@lib/abpUtility'
@@ -124,11 +123,6 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
           className=" p-3"
           size="large">
           <Row gutter={[8, 8]}>
-            <Col sm={{ span: 24, offset: 0 }}>
-              <BarChartOutlined />
-              {L('VIEW_PBI')}
-            </Col>
-
             {embedData?.TokenId && (
               <Col sm={{ span: 24, offset: 0 }}>
                 <PowerBIEmbed

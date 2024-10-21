@@ -2,19 +2,16 @@ import './index.less'
 
 import * as React from 'react'
 
-import { Button, Card, Col, Row } from 'antd'
+import { Card, Col, Row } from 'antd'
 import { inject, observer } from 'mobx-react'
 import firebase from 'firebase/app'
 import AccountStore from '../../../stores/accountStore'
 import AuthenticationStore from '../../../stores/authenticationStore'
-import { L } from '../../../lib/abpUtility'
 import SessionStore from '../../../stores/sessionStore'
 import Stores from '../../../stores/storeIdentifier'
 import { loginSteps, loginMethods, firebaseConfig } from '@lib/appconst'
 import SystemAccountLoginPanel from '@scenes/accounts/Login/SystemAccountLoginPanel'
-import PhoneLoginPanel from '@scenes/accounts/Login/PhoneLoginPanel'
-import SocialLogin from './SocialLogin/SocialLogin'
-import { MailOutlined, PhoneOutlined } from '@ant-design/icons'
+import SystemForgetPassword from '@scenes/accounts/Login/SystemForgetPassword'
 import { useLocation } from 'react-router-dom'
 import term from './Terms'
 
@@ -93,91 +90,64 @@ class Login extends React.Component<ILoginProps> {
   handleEnterTerms() {}
   public render() {
     const { method, loginMethodsAllow } = this.state
-    const currentYear = new Date().getFullYear()
 
     return !this.state.terms ? (
       term.call(this)
     ) : (
-      <Row className="page-login">
-        <Col xs={0} md={16} className="h-100 col-right">
-          <span className="footer-copy-right">
-            {L('COPY_RIGHT_{0}', currentYear)}
-          </span>
-        </Col>
-        <Col xs={24} md={8} className="h-100 col-left">
-          <Card bordered={false} className="h-100 pt-3">
-            <div style={{ textAlign: 'center' }}>
-              <img src="/assets/images/logoSavills.png" className="rounded" />
-              <br />
-              <img src="../../../assets/images/auth/union.png" />
-              <p className="mt-3 welcome-message">{L('WELCOME_MESSAGE')}</p>
-            </div>
-            <div className="text-center w-100">
-              <div style={{ maxWidth: '360px', margin: 'auto' }}>
-                {method === null && (
-                  <>
-                    <SocialLogin
-                      authenticationStore={this.props.authenticationStore}
-                      loginMethodsAllow={loginMethodsAllow}
-                    />
-                    {loginMethodsAllow.isSmsProviderEnabled && (
-                      <Button
-                        className="w-100 my-1 text-left"
-                        shape="round"
-                        icon={<PhoneOutlined className="mx-3" />}
-                        onClick={() =>
-                          this.setState({ method: loginMethods.phoneNumber })
-                        }>
-                        {L('LOGIN_METHOD_PHONE')}
-                      </Button>
-                    )}
-                    {loginMethodsAllow.isEmailProviderEnabled && (
-                      <Button
-                        className="w-100 my-1 text-left"
-                        shape="round"
-                        onClick={() =>
-                          this.setState({ method: loginMethods.systemAccount })
-                        }
-                        icon={<MailOutlined className="mx-3" />}>
-                        {L('LOGIN_METHOD_NORMAL')}
-                      </Button>
-                    )}
-                  </>
-                )}
-                {method === loginMethods.phoneNumber && (
-                  <PhoneLoginPanel
-                    authenticationStore={this.props.authenticationStore}
-                    history={this.props.history}
-                    location={this.props.location}
-                    handleBack={() => this.setState({ method: null })}
-                  />
-                )}
-                {method === loginMethods.systemAccount && (
-                  <>
-                    {loginMethodsAllow.isEmailProviderEnabled && (
-                      <SystemAccountLoginPanel
-                        history={this.props.history}
-                        location={useLocation}
-                        authenticationStore={this.props.authenticationStore}
-                        handleBack={() => this.setState({ method: null })}
+      <div className="page-login">
+        <Row className="page-login-login">
+          <Col xs={24} md={13} className="h-100 col-left">
+            <Card bordered={false} className="h-100 pt-3">
+              <div className="text-center w-100">
+                <div style={{ maxWidth: '400px', margin: 'auto' }}>
+                  {method === loginMethods.systemAccount && (
+                    <>
+                      {loginMethodsAllow.isEmailProviderEnabled && (
+                        <SystemAccountLoginPanel
+                          history={this.props.history}
+                          location={useLocation}
+                          authenticationStore={this.props.authenticationStore}
+                          handleFogotPassword={() => {
+                            console.log(method)
+                            this.setState({
+                              method: loginMethods.forgetPassword
+                            })
+                          }}
+                        />
+                      )}
+                    </>
+                  )}
+                  {method === loginMethods.forgetPassword && (
+                    <>
+                      {loginMethodsAllow.isEmailProviderEnabled && (
+                        <SystemForgetPassword
+                          history={this.props.history}
+                          location={useLocation}
+                          authenticationStore={this.props.authenticationStore}
+                          backToLogin={() =>
+                            this.setState({
+                              method: loginMethods.systemAccount
+                            })
+                          }
+                        />
+                      )}
+                    </>
+                  )}
+                  <Row className="mb-3">
+                    <Col span={24} style={{ textAlign: 'center' }}>
+                      <img
+                        src="../../../assets/images/auth/union.png"
+                        style={{ opacity: '.5' }}
                       />
-                    )}
-                  </>
-                )}
-
-                <Row className="mb-3">
-                  <Col span={24} style={{ textAlign: 'center' }}>
-                    <img
-                      src="../../../assets/images/auth/union.png"
-                      style={{ opacity: '.5' }}
-                    />
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
-          </Card>
-        </Col>
-      </Row>
+            </Card>
+          </Col>
+          <Col xs={0} md={11} className="h-100 col-right"></Col>
+        </Row>{' '}
+      </div>
     )
   }
 }

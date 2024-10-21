@@ -113,7 +113,7 @@ class SessionStore {
     sessionStorage.clear()
     abp.auth.clearToken()
 
-    window.location.href = '/account' + userLayout.accountLogin.path
+    window.location.href = '/account' + userLayout.landingPage.path
   }
 
   @action

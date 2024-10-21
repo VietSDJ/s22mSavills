@@ -8,65 +8,72 @@
   position: relative;
 
   .page-login {
-    height: 100vh;
-    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     overflow: hidden;
     padding: 0;
     margin: 0;
     flex: 1;
 
-    .col-left {
-      .ant-card {
-        height: 100%;
-        overflow-y: auto;
+    .page-login-login {
+      height: 45%;
+      width: 55%;
 
-        .ant-card-body {
-          height: 100% !important;
-          padding: 300px 20px;
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
+      .col-left {
+        .ant-card {
+          height: 100%;
+          overflow-y: auto;
 
-          .welcome-message {
-            color: #1d4449;
-            opacity: 0.38;
-            font-size: 14px;
+          .ant-card-body {
+            height: 100% !important;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+
+            .welcome-message {
+              color: #1d4449;
+              opacity: 0.38;
+              font-size: 14px;
+            }
+          }
+
+          .ant-form-item-label {
+            font-weight: 600;
           }
         }
+      }
 
-        .ant-form-item-label {
-          font-weight: 600;
+      .col-right {
+
+        display: flex;
+        justify-content: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+        background-image: url('../../assets/bg/background-login.jpeg');
+
+        @media only screen and (max-width: 600px) {
+          display: none !important;
+        }
+
+        .footer-copy-right {
+          position: absolute;
+          bottom: 20px;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.87);
+          font-family: 'Helvetica', sans-serif;
+          font-style: normal;
+          font-weight: normal;
         }
       }
-    }
 
-    .col-right {
-
-      display: flex;
-      justify-content: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: left;
-      background-image: url('../../assets/bg/background-login.jpeg');
-
-      @media only screen and (max-width: 600px) {
-        display: none !important;
-      }
-
-      .footer-copy-right {
-        position: absolute;
-        bottom: 20px;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.87);
-        font-family: 'Helvetica', sans-serif;
-        font-style: normal;
-        font-weight: normal;
+      .ant-card {
+        box-shadow: 0 0 4px rgba(29, 68, 73, 0.24);
       }
     }
 
-    .ant-card {
-      box-shadow: 0 0 4px rgba(29, 68, 73, 0.24);
-    }
   }
 
   .page-forgot-password {

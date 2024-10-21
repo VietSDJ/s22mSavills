@@ -6,13 +6,12 @@ import { Button, Col, Row, Form } from 'antd'
 import AccountStore from '../../../../stores/accountStore'
 import AuthenticationStore from '../../../../stores/authenticationStore'
 import { L } from '../../../../lib/abpUtility'
-import { Link } from 'react-router-dom'
 import SessionStore from '../../../../stores/sessionStore'
 import rules from './index.validation'
 import { validateMessages } from '../../../../lib/validation'
-import { userLayout } from '@components/Layout/Router/router.config'
 import FormInput from '@components/FormItem/FormInput'
 import FormInputPassword from '@components/FormItem/FormInput/FormInputPassword'
+import { LockOutlined } from '@ant-design/icons'
 
 export interface ILoginProps {
   authenticationStore?: AuthenticationStore
@@ -20,7 +19,7 @@ export interface ILoginProps {
   accountStore?: AccountStore
   history: any
   location: any
-  handleBack: () => void
+  handleFogotPassword: () => void
 }
 
 function SystemAccountLoginPanel(props: ILoginProps) {
@@ -47,34 +46,29 @@ function SystemAccountLoginPanel(props: ILoginProps) {
       onFinish={handleSubmit}
       validateMessages={validateMessages}
       layout={'vertical'}>
-      <Row style={{ marginTop: '20px' }} gutter={[16, 16]}>
-        {/*  <Col span={4} className="h-100 text-center">
-         <Button
-            className="rounded"
-            size="large"
-            icon={
-              <LeftOutlined style={{ fontSize: '16px', color: '#DEB854' }} />
-            }
-            onClick={() => props.handleBack()}
-          /> 
-        </Col>*/}
+      <Row style={{ marginTop: '20px' }} gutter={[16, 8]}>
         <Col span={20}>
           <div className="w-100 text-left ml-1">
-            <h2 className="ml-1">{L('LOGIN_WITH_ACCOUNT')}</h2>
+            <h2 style={{ marginBottom: 0 }} className="ml-1">
+              {L('LOGIN_WITH_ACCOUNT')}
+            </h2>
+            <label className="ml-1">{L('SIGN_IN_TO_YOUR_ACCOUNT')}</label>
           </div>
         </Col>
         <Col span={24} offset={0}>
           <FormInput
+            prefix={'@'}
             name="userNameOrEmailAddress"
             rule={rules.userNameOrEmailAddress}
-            label={L('USERNAME_OR_EMAIL')}
+            placeholder={L('USERNAME_OR_EMAIL')}
           />
         </Col>
         <Col span={24} offset={0}>
           <FormInputPassword
             name="password"
             rule={rules.password}
-            label={L('PASSWORD')}
+            placeholder={L('PASSWORD')}
+            prefix={<LockOutlined />}
           />
           {/* <Form.Item
             name="password"
@@ -87,14 +81,20 @@ function SystemAccountLoginPanel(props: ILoginProps) {
       </Row>
       <Row>
         <Col span={24}>
-          <Button
-            style={{ width: '100%', marginTop: '10px' }}
-            htmlType={'submit'}
-            type="primary"
-            loading={props.authenticationStore?.isLoading || false}
-            shape="round">
-            {L('BTN_LOGIN')}
-          </Button>
+          <div className="flex mt-2 space-between center-items">
+            <Button
+              htmlType={'submit'}
+              size="middle"
+              type="primary"
+              loading={props.authenticationStore?.isLoading || false}>
+              {L('BTN_LOGIN')}
+            </Button>
+            {/* <Link
+              // to={{ pathname: '/account' + userLayout.forgotPassword.path }}
+              style={{ fontWeight: 600 }}> */}
+            <a onClick={props.handleFogotPassword}>{L('FORGOT_PASSWORD')}</a>
+            {/* </Link> */}
+          </div>
         </Col>
         {/* <Col span={24} style={{ marginTop: '20px', textAlign: 'center' }}>
           <Link
@@ -103,13 +103,6 @@ function SystemAccountLoginPanel(props: ILoginProps) {
             {L('REGISTER')}
           </Link>
         </Col> */}
-        <Col span={24} style={{ marginTop: '10px', textAlign: 'center' }}>
-          <Link
-            to={{ pathname: '/account' + userLayout.forgotPassword.path }}
-            style={{ fontWeight: 600 }}>
-            {L('FORGOT_PASSWORD')}
-          </Link>
-        </Col>
       </Row>
     </Form>
   )

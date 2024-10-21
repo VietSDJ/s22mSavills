@@ -5,16 +5,26 @@ import { RegisterOutput } from './dto/registerOutput'
 import http from '../httpService'
 import { ChangePasswordInput } from './dto/changePasswordInput'
 import { ResetPasswordInput } from './dto/resetPasswordInput'
-import ForgotPasswordModel, {ResetPasswordModel} from '../../models/account/ForgotPassword/forgotPasswordModel'
+import ForgotPasswordModel, {
+  ResetPasswordModel
+} from '../../models/account/ForgotPassword/forgotPasswordModel'
 
 class AccountService {
-  public async isTenantAvailable(isTenantAvaibleInput: IsTenantAvaibleInput): Promise<IsTenantAvaibleOutput> {
-    let result = await http.post('api/services/app/Account/IsTenantAvailable', isTenantAvaibleInput)
+  public async isTenantAvailable(
+    isTenantAvaibleInput: IsTenantAvaibleInput
+  ): Promise<IsTenantAvaibleOutput> {
+    let result = await http.post(
+      'api/services/app/Account/IsTenantAvailable',
+      isTenantAvaibleInput
+    )
     return result.data.result
   }
 
   public async register(registerInput: RegisterInput): Promise<RegisterOutput> {
-    let result = await http.post('api/services/app/Account/Register', registerInput)
+    let result = await http.post(
+      'api/services/app/Account/Register',
+      registerInput
+    )
     return result.data.result
   }
 
@@ -29,12 +39,18 @@ class AccountService {
   }
 
   public async adminResetPassword(body: ResetPasswordInput) {
-    let result = await http.post('api/services/app/Account/AdminResetPassword', body)
+    let result = await http.post(
+      'api/services/app/Account/AdminResetPassword',
+      body
+    )
     return result.data.result
   }
 
   public async forgotPassword(body: ForgotPasswordModel) {
-    let result = await http.post('api/services/app/Account/SendPasswordResetCode', body)
+    let result = await http.post(
+      'api/services/app/Account/SendPasswordResetCode',
+      body
+    )
     return result.data.result
   }
 
@@ -42,11 +58,25 @@ class AccountService {
     let result = await http.post('api/services/app/Account/ResetPassword', body)
     return result.data.result
   }
-  public async SendPasswordResetCode(body) {
-    let result = await http.post('api/services/app/Account/SendPasswordResetCode', body)
+  public async resetPasswordViaEmail(body: ResetPasswordModel) {
+    let result = await http.post(
+      'api/services/app/Account/SendResetPasswordViaEmail',
+      body
+    )
     return result.data.result
-  }public async PhoneResetPassword(body) {
-    let result = await http.post('api/services/app/Account/PhoneResetPassword', body)
+  }
+  public async SendPasswordResetCode(body) {
+    let result = await http.post(
+      'api/services/app/Account/SendPasswordResetCode',
+      body
+    )
+    return result.data.result
+  }
+  public async PhoneResetPassword(body) {
+    let result = await http.post(
+      'api/services/app/Account/PhoneResetPassword',
+      body
+    )
     return result.data.result
   }
 }

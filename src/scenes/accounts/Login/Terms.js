@@ -823,20 +823,20 @@ export default function () {
         <article>
           <CRow className="justify-content-between">
             <CLink href="./landingpage">
-              <CButton
+              <button
                 className="terms-btn mr-xs-1 mr-md-2 mr-lg-3"
                 color="primary">
                 Back
-              </CButton>
+              </button>
             </CLink>
 
-            <CButton
+            <button
               className="terms-btn mr-xs-1 mr-md-2 mr-lg-3"
               color="primary"
               onClick={this.handleAgreeTerms}
               disabled={!this.state.termAgreementClickable}>
               Agree & Continue
-            </CButton>
+            </button>
           </CRow>
         </article>
       </div>

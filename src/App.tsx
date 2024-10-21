@@ -24,6 +24,7 @@ class App extends React.Component<IAppProps> {
       window.location.pathname !== '/account/landingpage'
     ) {
       // window.location.href = '/account/login'
+      window.location.pathname !== '/account/landingpage'
     }
     if (
       !!this.props.sessionStore!.currentLogin.user &&

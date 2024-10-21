@@ -279,7 +279,7 @@ export const portalLayouts: any = {
   reportUser: {
     path: '/reportsUser',
     name: 'REPORTS_USER',
-    permission: appPermissions.report.page,
+    permission: appPermissions.report.client,
     // quyền report user riêng
     title: 'Reports',
     layout: layouts.portalLayout,
@@ -460,7 +460,7 @@ export const appMenuGroups: any = [
     isGroup: true,
     children: [
       routers.adminRole,
-      // routers.adminLanguages,
+      routers.adminLanguages,
       routers.staffManagement
     ]
   }
