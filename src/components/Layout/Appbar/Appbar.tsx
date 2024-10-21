@@ -2,7 +2,6 @@ import './index.less'
 import React from 'react'
 // import LanguageSelect from '../Header/LanguageSelect'
 import { Avatar } from 'antd'
-import NoticeIconView from '../Header/NoticeIcon/NoticeIconView'
 import { useNavigate } from 'react-router'
 
 import SessionStore from '@stores/sessionStore'
@@ -49,7 +48,7 @@ const Appbar = (props: Props) => {
             shape="circle"
           />
         </a>
-        <NoticeIconView history={history} wrapClass="wrap-item" />
+        {/* <NoticeIconView history={history} wrapClass="wrap-item" /> */}
 
         {/* <MessageOutlined
           style={{ height: 40, width: 40, fontSize: '1.4rem' }}

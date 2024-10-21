@@ -1,16 +1,6 @@
 import React from 'react'
 
-import {
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Switch,
-  Modal,
-  Button,
-  Divider
-} from 'antd'
+import { Col, Form, Input, Row, Select, Modal, Button, Divider } from 'antd'
 import { L, LNotification, isGrantedAny } from '../../../../lib/abpUtility'
 import rules from './validation'
 import AppConsts, {
@@ -116,15 +106,6 @@ class StaffDetail extends AppComponentBase<IStaffFormProps> {
           className="d-flex justify-content-between">
           <span className="d-flex align-items-center">
             {/* <span className="mr-2 text-muted">{L('IS_ACTIVATED')}</span> */}
-            <span>
-              <Form.Item
-                name="isActive"
-                valuePropName="checked"
-                className="mb-0">
-                <Switch defaultChecked />
-                <span className="mx-2">{L('STAFF_ACTIVE_STATUS')}</span>
-              </Form.Item>
-            </span>
           </span>
           <span>
             <Button className="mr-1" onClick={this.onCancel} shape="round">

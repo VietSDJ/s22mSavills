@@ -14,7 +14,6 @@ import { inject } from 'mobx-react'
 import Stores from '@stores/storeIdentifier'
 import { observer } from 'mobx-react-lite'
 import WrapPageScroll from '@components/WrapPageScroll'
-import PhoneInput from '@components/Inputs/PhoneInput/PhoneInput'
 import ModalChangePhoneNumber from './components/ModalChangePhoneNumber'
 const { formVerticalLayout } = AppConsts
 
@@ -27,27 +26,7 @@ const MyProfile = inject(Stores.SessionStore)(
     const [changePhoneVisible, setChangePhoneVisible] = React.useState(false)
     const [loading, setLoading] = useState(false)
     const [form] = Form.useForm()
-    const GoogleIcon = (
-      <img
-        src="/assets/icons/GoogleIcon.svg"
-        height="20px"
-        className="mb-1 mx-2"
-      />
-    )
-    const AppleIcon = (
-      <img
-        src="/assets/icons/AppleIcon.svg"
-        height="20px"
-        className="mb-1 mx-2"
-      />
-    )
-    const MicrosoftIcon = (
-      <img
-        src="/assets/icons/MicrosoftIcon.svg"
-        height="20px"
-        className="mb-1 mx-2"
-      />
-    )
+
     useEffect(() => {
       const formValues = {
         ...props.sessionStore?.currentLogin?.user,
@@ -91,18 +70,7 @@ const MyProfile = inject(Stores.SessionStore)(
     const handleUpdateUsername = async (values) => {
       await props.sessionStore.updateUsername(values)
     }
-    const renderSwitch = (service, index) => {
-      switch (service) {
-        case 'google.com':
-          return <span key={index}>{GoogleIcon}</span>
-        case 'apple.com':
-          return <span key={index}>{AppleIcon}</span>
-        case 'microsoft.com':
-          return <span key={index}>{MicrosoftIcon}</span>
-        default:
-          return
-      }
-    }
+
     return (
       <WrapPageScroll renderActions={() => renderActions(loading)}>
         <Form
@@ -148,29 +116,7 @@ const MyProfile = inject(Stores.SessionStore)(
                 <Input />
               </Form.Item>
             </Col>
-            <Col sm={{ span: 24, offset: 0 }}>
-              <PhoneInput
-                disabled
-                fieldName="userName"
-                label="User Name"
-                suffix={
-                  props.sessionStore?.currentLogin?.user.userInfo
-                    .isPhoneConfirmed ? (
-                    <CheckCircleOutlined className="text-success" />
-                  ) : (
-                    <ExclamationCircleOutlined className="text-danger" />
-                  )
-                }
-              />
-              <div className="w-100 d-flex justify-content-end">
-                <Button
-                  type="link"
-                  className="p-0"
-                  onClick={() => setChangePhoneVisible(true)}>
-                  {L('CHANGE_USER_NAME')}
-                </Button>
-              </div>
-            </Col>
+
             <Col sm={{ span: 24, offset: 0 }}>
               <Form.Item
                 label={L('MY_PROFILE_EMAIL')}
@@ -190,12 +136,12 @@ const MyProfile = inject(Stores.SessionStore)(
                 />
               </Form.Item>
             </Col>
-            <Col sm={{ span: 12, offset: 0 }}>
+            {/* <Col sm={{ span: 12, offset: 0 }}>
               <span>{L('ACCOUNT_LOGIN_SERVICE')}:</span>
               {props.sessionStore?.currentLogin?.user.userInfo.userLogins.map(
                 (service, index) => renderSwitch(service, index)
               )}
-            </Col>
+            </Col> */}
           </Row>
         </Form>
         <ModalChangePhoneNumber

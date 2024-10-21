@@ -1,16 +1,6 @@
 import React from 'react'
 
-import {
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Switch,
-  Modal,
-  Button,
-  DatePicker
-} from 'antd'
+import { Col, Form, Input, Row, Select, Modal, Button, DatePicker } from 'antd'
 import rules from './validation'
 // import * as pbi from 'powerbi-client'
 
@@ -130,15 +120,6 @@ class ReportDetail extends AppComponentListBase<IProps, IState> {
           className="d-flex justify-content-between">
           <span className="d-flex align-items-center">
             {/* <span className="mr-2 text-muted">{L('IS_ACTIVATED')}</span> */}
-            <span>
-              <Form.Item
-                name="isActive"
-                valuePropName="checked"
-                className="mb-0">
-                <Switch defaultChecked />
-                <span className="mx-2">{L('STAFF_ACTIVE_STATUS')}</span>
-              </Form.Item>
-            </span>
           </span>
           <span>
             <Button className="mr-1" onClick={this.onCancel} shape="round">
