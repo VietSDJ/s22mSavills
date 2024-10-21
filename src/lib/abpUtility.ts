@@ -7,17 +7,20 @@ import {
   BugOutlined
 } from '@ant-design/icons'
 import { notification } from 'antd'
-const  localization  = {
-  defaultLocalizationSourceName: "WebLabel",
-  sourceWebNotification: "WebNotification",
-  sourceWebError: "WebError",
-  sourceWebMainMenu: "WebMainMenu",
-  sourceWebCategory: "WebCategory",
+const localization = {
+  defaultLocalizationSourceName: 'WebLabel',
+  sourceWebNotification: 'WebNotification',
+  sourceWebError: 'WebError',
+  sourceWebMainMenu: 'WebMainMenu',
+  sourceWebCategory: 'WebCategory'
 }
 declare var abp: any
 
 export function L(key: string, ...args: any[]): string {
-  let localizedText = abp.localization.localize(key, localization.defaultLocalizationSourceName)
+  let localizedText = abp.localization.localize(
+    key,
+    localization.defaultLocalizationSourceName
+  )
   if (!localizedText) {
     localizedText = key
   }
@@ -30,7 +33,10 @@ export function L(key: string, ...args: any[]): string {
 }
 
 export function LError(key: string, ...args: any[]): string {
-  let localizedText = abp.localization.localize(key, localization.sourceWebError)
+  let localizedText = abp.localization.localize(
+    key,
+    localization.sourceWebError
+  )
   if (!localizedText) {
     localizedText = key
   }
@@ -43,7 +49,10 @@ export function LError(key: string, ...args: any[]): string {
 }
 
 export function LNotification(key: string, ...args: any[]): string {
-  let localizedText = abp.localization.localize(key, localization.sourceWebNotification)
+  let localizedText = abp.localization.localize(
+    key,
+    localization.sourceWebNotification
+  )
   if (!localizedText) {
     localizedText = key
   }
@@ -56,7 +65,10 @@ export function LNotification(key: string, ...args: any[]): string {
 }
 
 export function LCategory(key: string, ...args: any[]): string {
-  let localizedText = abp.localization.localize(key, localization.sourceWebCategory)
+  let localizedText = abp.localization.localize(
+    key,
+    localization.sourceWebCategory
+  )
   if (!localizedText) {
     localizedText = key
   }
@@ -69,7 +81,10 @@ export function LCategory(key: string, ...args: any[]): string {
 }
 
 export function LMainMenu(key: string, ...args: any[]): string {
-  let localizedText = abp.localization.localize(key, localization.sourceWebMainMenu)
+  let localizedText = abp.localization.localize(
+    key,
+    localization.sourceWebMainMenu
+  )
   if (!localizedText) {
     localizedText = key
   }
@@ -87,29 +102,27 @@ export function isGranted(permissionName: string): boolean {
   }
   return abp.auth.isGranted(permissionName)
 }
-
 export function isGrantedAny(...args: string[]): boolean {
-  for (let i = 0 ; i < args.length; i++) {
+  for (let i = 0; i < args.length; i++) {
     if (abp.auth.isGranted(args[i])) {
       return true
     }
   }
   return false
 }
-
-export function getNotificationIconBySeverity (severity) {
+export function getNotificationIconBySeverity(severity) {
   switch (severity) {
     case abp.notifications.severity.SUCCESS:
-      return CheckOutlined;
+      return CheckOutlined
     case abp.notifications.severity.WARN:
-      return WarningOutlined;
+      return WarningOutlined
     case abp.notifications.severity.ERROR:
-      return CloseCircleOutlined;
+      return CloseCircleOutlined
     case abp.notifications.severity.FATAL:
-      return BugOutlined;
+      return BugOutlined
     case abp.notifications.severity.INFO:
     default:
-      return InfoOutlined;
+      return InfoOutlined
   }
 }
 
@@ -120,7 +133,7 @@ abp.notify.success = (description, message?, options?) => {
     onClick: () => {
       options?.onClick()
     }
-  });
+  })
 }
 abp.notify.info = (description, message?, options?) => {
   notification.info({
@@ -129,7 +142,7 @@ abp.notify.info = (description, message?, options?) => {
     onClick: () => {
       options?.onClick()
     }
-  });
+  })
 }
 
 abp.notify.error = (description, message?, options?) => {
@@ -139,5 +152,5 @@ abp.notify.error = (description, message?, options?) => {
     onClick: () => {
       options?.onClick()
     }
-  });
+  })
 }

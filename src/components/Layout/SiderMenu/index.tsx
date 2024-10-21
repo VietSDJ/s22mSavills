@@ -1,7 +1,7 @@
 import './index.less'
 import * as React from 'react'
 import { Layout, Menu } from 'antd'
-import { isGranted } from '@lib/abpUtility'
+import { isGranted, isGrantedAny } from '@lib/abpUtility'
 import { appMenuGroups, portalLayouts } from '../Router/router.config'
 import GetMenuItems from './MenuItem'
 
@@ -39,7 +39,9 @@ const SiderMenu = (props: ISiderMenuProps) => {
         isGranted(item?.permission)
       )
       return (
-        isGranted(route.permission) ||
+        (route.permissions
+          ? isGrantedAny(route.permissions)
+          : isGranted(route.permission)) ||
         (route.children && route.children.length && hasGrantedChild !== -1)
       )
     })

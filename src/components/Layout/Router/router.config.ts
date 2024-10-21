@@ -451,12 +451,17 @@ export const appMenuGroups: any = [
   {
     name: 'REPORT_GROUP',
     isGroup: true,
-    permission: '',
+    permissions: [appPermissions.report.client, appPermissions.report.page],
     children: [routers.reportAdmin, routers.reportUser]
   },
 
   {
     name: 'ADMINISTRATION_GROUP',
+    permissions: [
+      appPermissions.adminLanguage.page,
+      appPermissions.adminLanguage.page,
+      appPermissions.staff.page
+    ],
     isGroup: true,
     children: [
       routers.adminRole,
@@ -467,6 +472,6 @@ export const appMenuGroups: any = [
 ]
 
 export const accountMenuGroups: any = [
-  routers.accountConfigMyProfile,
-  routers.accountConfigChangePassword
+  routers.accountConfigMyProfile
+  // routers.accountConfigChangePassword
 ]
